@@ -1,94 +1,85 @@
-/* This program is my own take on DNA.java. It still has the same functionality but we have added some different methods to gather the information.
-Instead of having all our functions being built from the main method we have added methods for each dna string so it can be called more easily, and we have added all our dna samples to an ArrayList so we can call the function and it will produce the results for all of the samples.*/ 
 
-// We need ArrayList in order to perform our loop.
+// This version of Project2 is different from the original because we have converted it into a loop.
+// By using a loop, we can check for proteins more efficiently, allowing us to process multiple DNA samples in a single run.
+
 import java.util.ArrayList;
 
 public class PracDna{
 
-// This Method is one of many so we can call the results without having to bloat our main method and can easily be called from child classes.
-    public void dna1Meth(){
-        String dna1 = "ATGCGATACGCTTGA";
-        int start1 = dna1.indexOf("ATG");
-        int end1 = dna1.indexOf("TGA");
-        int length = dna1.length();
-        if (start1 != -1 && end1 != -1 && (start1 - end1) % 3 == 0){
-            String protein1 = dna1.substring(start1, end1+3);
-            System.out.println("DNA SAMPLE: " + dna1 + " | LENGTH: " + length);
-            System.out.println("protein: " + protein1);
-            System.out.println("Conditions 1, 2, and 3 have been met.");
-        }
-        else {
-            System.out.println("DNA SAMPLE: " + dna1 + " | LENGTH: " + length);
-            System.out.println("No protein found!");
-        }
-
-    }
-    public void dna2Meth(){
-        String dna2  = "ATGCGATACGTGA";
-        int start2 = dna2.indexOf("ATG");
-        int end2 = dna2.indexOf("TGA");
-        int length2 = dna2.length();
-        if (start2 != -1 && end2 != -1 && (start2 - end2) % 3 == 0){
-            String protein2 = dna2.substring(start2, end2+3);
-            System.out.println("DNA SAMPLE: " + dna2 + " | LENGTH: " + length2);
-            System.out.println("Protein: " + protein2);
-            System.out.println("Conditions 1, 2, and 3 have been met.");
-        }
-        else{
-            System.out.println("DNA SAMPLE: " + dna2 + " | LENGTH: " + length2);
-            System.out.println("No protein found");
-        }
-    }
-    public void dna3Meth(){
-        String dna3 = "ATTAATATGTACTGA";
-        int start3 = dna3.indexOf("ATG");
-        int end3 = dna3.indexOf("TGA");
-        int length3 = dna3.length();
-        if (start3 != -1 && end3 != -1 && (start3 - end3) % 3 == 0){
-            String protein3 = dna3.substring(start3, end3+3);
-            System.out.println("DNA SAMPLE: " + dna3 + " | LENGTH: " + length3);
-            System.out.println("Protein: " + protein3);
-            System.out.println("Conditions 1, 2, and 3 have been met.");
-
-        }
-        else{
-            System.out.println("DNA SAMPLE: " + dna3 + " | LENGTH: " + length3);
-            System.out.println("No Protein Found!");
-        }
-    }
-// This loop will run through all samples we have stored in the ArrayList and print all the results
-    public void loopResults(){ 
-        String[] dnaBunch = {"ATGCGATACGCTTGA","ATGCGATACGTGA","ATTAATATGTACTGA"};
-        for (String dna : dnaBunch){
+// This method takes a string array as the parameter and loops through each DNA sample.
+// We use a for-each loop to go through the array of DNA sequences.
+// Two integers, 'start' and 'end', are used to find the positions of the start ("ATG") and stop ("TGA") codons in the DNA sequence.
+// The 'length' variable is used to store the length of the current DNA sequence for context.
+// The 'if' statement checks if both start and end codons are found ('-1' means not found),
+// and ensures that the distance between the start and end codons is divisible by 3 (for a valid protein sequence).
+// The 'protein' string is created using 'substring(start, end + 3)', which ensures the stop codon is included in the sequence.
+// If the conditions are met, the protein sequence is printed along with the DNA sample and its length.
+// If the conditions are not met, a message indicating "No Protein Found" is printed.
+    public void proteinTracker(String[] array){
+        for (String dna : array){
             int start = dna.indexOf("ATG");
             int end = dna.indexOf("TGA");
-            if (start != -1 && end != -1  && (start - end) % 3 == 0){
-                String protein = dna.substring(start, end+3);
-                System.out.println("DNA SAMPLE: " + dna); 
+            int length = dna.length();
+            if (start != -1 && end != -1 && (end - start) % 3 == 0){
+                String protein = dna.substring(start, end + 3);
+                System.out.println("DNA SAMPLE: " + dna + " LENGTH: " + length);
                 System.out.println("Protein Found: " + protein);
-                System.out.println("Conditions 1, 2, and 3 have been met.");
+                System.out.println();
+
             }
             else{
-                System.out.println("DNA SAMPLE: " + dna);
-                System.out.println("No protein found");
+                System.out.println("DNA SAMPLE: " + dna + " LENGTH: " + length);
+                System.out.println("No Protein Found :(");
+                System.out.println();
             }
         }
-        
     }
 
- 
     public static void main(String[] args){
-        PracDna newMeth = new PracDna();
-        newMeth.dna1Meth();
-        System.out.println();
-        newMeth.dna2Meth();
-        System.out.println();
-        newMeth.dna3Meth();
-        System.out.println();
-        newMeth.loopResults(); 
+
+        String[] group1 = {
+            "ATGCGATACGCTTGA",
+            "GCTAGCTAGGCTA",
+            "ATGTACGATGTGA"
+        };
+
+        String[] group2 = {
+            "ATTAATATGTACTGA",
+            "CGTACGATCG",
+            "ATGCGTACGTGA",
+            "TGAATCGTACG"
+        };
+
+
+        
+        String[] group3 = {
+            "ATGCTAGCTGACTGA",
+            "TACGATCGT",
+            "ATCGATCGATGCA"
+        };
+
+        String[] group4 = {
+            "ATGTACGAGTGA",
+            "CGTACGTAGC",
+            "ATGTGCGTGA",
+            "ATCGTACGATCGA"
+        };
+
+        String[] group5 = {
+            "ATGCTACGTGA",
+            "ATGCGTACGTGA",
+            "ATCGTACGAT",
+            "CGTACGATCGTA",
+            "ATGCGTACG",
+            "ATGCGTACGTAA"
+        };
+
+        PracDna proteinHunter = new PracDna();
+        proteinHunter.proteinTracker(group1);
+        proteinHunter.proteinTracker(group2);
+        proteinHunter.proteinTracker(group3);
+        proteinHunter.proteinTracker(group4);
+        proteinHunter.proteinTracker(group5);
+
     }
 }
-// ATGCGATACGCTTGA
-// ATGCGATACGTGA
-// ATTAATATGTACTGA
