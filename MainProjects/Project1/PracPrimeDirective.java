@@ -93,6 +93,39 @@ public class PracPrimeDirective{
         return primes;
     }
 
+    
+// This method generates an array of Fibonacci numbers up to 'n' elements.
+// 'n' determines how many numbers will be generated in the sequence.
+// If 'n' is 0 or negative, the method returns an empty list since no Fibonacci numbers are needed.
+// We define two integers, 'a' and 'b', as the starting values (0 and 1) for the sequence.
+// The first number (0) is always added to the list, and if 'n' is 1, we return the list immediately.
+// If 'n' is greater than 1, the second number (1) is also added before the loop starts.
+// The loop runs from index 2 to 'n - 1' and follows the Fibonacci rule: 
+//      next = a + b (sum of the last two numbers).
+// 'a' is then updated to 'b', and 'b' is updated to 'next' to continue the sequence.
+// This ensures that each new number in the sequence is calculated correctly.
+// Finally, the list of Fibonacci numbers is returned.
+
+    public ArrayList<Integer> firstNFibonacci(int n) {
+        ArrayList<Integer> fibonacciNumbers = new ArrayList<Integer>();
+        if (n <= 0) {
+            return fibonacciNumbers;
+        }
+        int a = 0, b = 1;
+        fibonacciNumbers.add(a);
+        if (n == 1) {
+            return fibonacciNumbers;
+        }
+        fibonacciNumbers.add(b);
+        for (int i = 2; i < n; i++) {
+            int next = a + b;
+            fibonacciNumbers.add(next);
+            a = b;
+            b = next;
+        }
+        return fibonacciNumbers;
+    }
+
     public static void main(String[] args){
         System.out.println("init test");
         int[] numbers = {6, 29, 28, 33, 11, 100, 101, 43, 89};
@@ -107,5 +140,6 @@ public class PracPrimeDirective{
         pd.oddEven("odd", newNumbers);
         System.out.println(pd.firstNPrimes(numbers, 1));
         System.out.println(pd.firstNPrimes(numbers, 3));
+        System.out.println(pd.firstNFibonacci(20));
     }
 }
