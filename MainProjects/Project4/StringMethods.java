@@ -5,7 +5,7 @@ public class StringMethods {
   static String eekWal = "I am equal to what?";
   static String eekWalRanCap = "i Am eqUal tO wHaT?";
   static String bigCaps = "MAKE ME LOWER CASE!";
-  static String lowCase = "make me big caps!";
+  static String lowCase = "make me all caps!";
   public static void main(String[] args) {
     System.out.println(strMethods);
     // .length() prints the number of characters including " ".
