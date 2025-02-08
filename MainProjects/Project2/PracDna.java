@@ -1,85 +1,107 @@
+    //  -. .-.   .-. .-.   .
+    //    \   \ /   \   \ /
+    //   / \   \   / \   \
+    //  ~   `-~ `-`   `-~ `-
 
-// This version of Project2 is different from the original because we have converted it into a loop.
-// By using a loop, we can check for proteins more efficiently, allowing us to process multiple DNA samples in a single run.
+public class PracDna {
 
-import java.util.ArrayList;
-
-public class PracDna{
-
-// This method takes a string array as the parameter and loops through each DNA sample.
-// We use a for-each loop to go through the array of DNA sequences.
-// Two integers, 'start' and 'end', are used to find the positions of the start ("ATG") and stop ("TGA") codons in the DNA sequence.
-// The 'length' variable is used to store the length of the current DNA sequence for context.
-// The 'if' statement checks if both start and end codons are found ('-1' means not found),
-// and ensures that the distance between the start and end codons is divisible by 3 (for a valid protein sequence).
-// The 'protein' string is created using 'substring(start, end + 3)', which ensures the stop codon is included in the sequence.
-// If the conditions are met, the protein sequence is printed along with the DNA sample and its length.
-// If the conditions are not met, a message indicating "No Protein Found" is printed.
-    public void proteinTracker(String[] array){
-        for (String dna : array){
+    // This method processes an array of DNA sequences and checks if each contains a valid protein.
+    // A protein is valid if it starts with "ATG" (start codon) and ends with either "TGA" or "TAA" (stop codon).
+    public void proteinTracker(String[] array) {
+        for (String dna : array) {
+            // Find the position of the start codon "ATG".
             int start = dna.indexOf("ATG");
-            int end = dna.indexOf("TGA");
-            int length = dna.length();
-            if (start != -1 && end != -1 && (end - start) % 3 == 0){
+
+            // If no start codon is found, skip to the next DNA sequence.
+            if (start == -1) {
+                System.out.println("DNA SAMPLE: " + dna + " LENGTH: " + dna.length());
+                System.out.println("No Protein Found :(");
+                System.out.println();
+                continue;
+            }
+
+            // Find the position of the stop codons "TGA" and "TAA" after the start codon.
+            int endTGA = dna.indexOf("TGA", start + 3);  // Search after the start codon
+            int endTAA = dna.indexOf("TAA", start + 3);  // Search after the start codon
+
+            // Determine the position of the first valid stop codon (either TGA or TAA).
+            int end = -1;
+            if (endTGA != -1 && (endTAA == -1 || endTGA < endTAA)) {
+                end = endTGA;
+            } else if (endTAA != -1) {
+                end = endTAA;
+            }
+
+            // If no stop codon is found, skip to the next DNA sequence.
+            if (end == -1) {
+                System.out.println("DNA SAMPLE: " + dna + " LENGTH: " + dna.length());
+                System.out.println("No Protein Found :(");
+                System.out.println();
+                continue;
+            }
+
+            // Check if the length from the start codon to the stop codon (inclusive) is divisible by 3.
+            int proteinLength = (end - start + 3);  // Include stop codon in length
+            if (proteinLength % 3 == 0) {
+                // Extract the protein sequence, including the stop codon.
                 String protein = dna.substring(start, end + 3);
-                System.out.println("DNA SAMPLE: " + dna + " LENGTH: " + length);
+                System.out.println("DNA SAMPLE: " + dna + " LENGTH: " + dna.length());
                 System.out.println("Protein Found: " + protein);
                 System.out.println();
-
-            }
-            else{
-                System.out.println("DNA SAMPLE: " + dna + " LENGTH: " + length);
+            } else {
+                // If the length is not divisible by 3, print no protein found.
+                System.out.println("DNA SAMPLE: " + dna + " LENGTH: " + dna.length());
                 System.out.println("No Protein Found :(");
                 System.out.println();
             }
         }
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
+        // Example DNA groups to be checked for proteins
         String[] group1 = {
-            "ATGCGATACGCTTGA",
-            "GCTAGCTAGGCTA",
-            "ATGTACGATGTGA"
+            "ATGCGATACGCTTGA", // This sequence has a valid protein.
+            "GCTAGCTAGGCTA",   // This sequence does not contain a valid protein.
+            "ATGTACGATGTGA"    // This sequence does not contain a valid protein.
         };
 
         String[] group2 = {
-            "ATTAATATGTACTGA",
-            "CGTACGATCG",
-            "ATGCGTACGTGA",
-            "TGAATCGTACG"
+            "ATTAATATGTACTGA",  // This sequence has a valid protein.
+            "CGTACGATCG",       // This sequence does not contain a valid protein.
+            "ATGCGTACGTGA",     // This sequence has a valid protein.
+            "TGAATCGTACG"       // This sequence does not contain a valid protein.
         };
 
-
-        
         String[] group3 = {
-            "ATGCTAGCTGACTGA",
-            "TACGATCGT",
-            "ATCGATCGATGCA"
+            "ATGCTAGCTGACTGA",  // This sequence does not contain a valid protein.
+            "TACGATCGT",        // This sequence does not contain a valid protein.
+            "ATCGATCGATGCA"     // This sequence does not contain a valid protein.
         };
 
         String[] group4 = {
-            "ATGTACGAGTGA",
-            "CGTACGTAGC",
-            "ATGTGCGTGA",
-            "ATCGTACGATCGA"
+            "ATGTACGAGTGA",     // This sequence has a valid protein.
+            "CGTACGTAGC",       // This sequence does not contain a valid protein.
+            "ATGTGCGTGA",       // This sequence does not contain a valid protein.
+            "ATCGTACGATCGA"     // This sequence does not contain a valid protein.
         };
 
         String[] group5 = {
-            "ATGCTACGTGA",
-            "ATGCGTACGTGA",
-            "ATCGTACGAT",
-            "CGTACGATCGTA",
-            "ATGCGTACG",
-            "ATGCGTACGTAA"
+            "ATGCTACGTGA",      // This sequence does not contain a valid protein.
+            "ATGCGTACGTGA",     // This sequence has a valid protein.
+            "ATCGTACGAT",       // This sequence does not contain a valid protein.
+            "CGTACGATCGTA",     // This sequence does not contain a valid protein.
+            "ATGCGTACG",        // This sequence does not contain a valid protein.
+            "ATGCGTACGTAA"      // This sequence has a valid protein.
         };
 
+        // Create an instance of the PracDna class and call the proteinTracker method for each DNA group.
         PracDna proteinHunter = new PracDna();
         proteinHunter.proteinTracker(group1);
         proteinHunter.proteinTracker(group2);
         proteinHunter.proteinTracker(group3);
         proteinHunter.proteinTracker(group4);
         proteinHunter.proteinTracker(group5);
-
     }
 }
+

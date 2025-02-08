@@ -1,58 +1,52 @@
+
 import java.util.ArrayList;
-public class PracPrimeDirective{
 
+public class PracPrimeDirective {
 
-
-    // This method checks whether a number is prime and returns the result as a boolean.
-    // Before running the loop, check if 'number' is less than 2.
-    // Prime numbers must be 2 or greater. If 'number' is less than 2, return false.
-    // This loop checks if 'number' is divisible by any number from 2 to n-1.
-    // Prime numbers are only divisible by 1 and themselves.
-    // We start at 2 since every number is divisible by 1.
-    // The loop stops at 'number' to avoid checking if 'number' is divisible by itself.
-    // If 'number' is divisible by 'i', it is not a prime number.
-    // If no divisors were found, 'number' is a prime number.
-
+    // This method determines if a given number is prime.
+    // A prime number is only divisible by 1 and itself.
+    // If the number is less than 2, it cannot be prime, so we return false immediately.
+    // We then check divisibility by every number from 2 up to (but not including) the given number.
+    // If we find any number that divides evenly, the given number is not prime, so we return false.
+    // If no divisors are found, the number is prime, so we return true.
     public boolean isPrime(int number) {
         if (number < 2) {
             return false;
-    }
+        }
         for (int i = 2; i < number; i++) {
-                if (number % i == 0) {
+            if (number % i == 0) { // If number is divisible by i, it's not prime
                 return false;
             }
+        }
+        return true; // If no divisors were found, it's prime
     }
-        return true;
-}
 
-    // This method takes an array of numbers passed from the main method.
-    // It creates a new ArrayList called 'primes' to store prime numbers found from the 'numbers' array.
-    // Then, we use a for-each loop to iterate over each number in the 'numbers' array.
-    // Inside the loop, we use an if statement to check if the number is prime by passing it to the 'isPrime' method.
-    // If the number is prime, it is added to the 'primes' ArrayList.
-    // Finally, we return the 'primes' ArrayList containing all the prime numbers.
-
-    public ArrayList<Integer> onlyPrimes(int[] numbers){
-        ArrayList<Integer> primes = new ArrayList<Integer>();
-        for (int number : numbers){
-            if (isPrime(number)){
+    // This method filters an array of numbers, returning only the prime numbers.
+    // It creates an ArrayList to store prime numbers.
+    // The method iterates over each number in the given array.
+    // If a number is prime (checked using isPrime), it gets added to the list.
+    // Finally, the list of prime numbers is returned.
+    public ArrayList<Integer> onlyPrimes(int[] numbers) {
+        ArrayList<Integer> primes = new ArrayList<>();
+        for (int number : numbers) {
+            if (isPrime(number)) {
                 primes.add(number);
             }
         }
         return primes;
     }
 
-// This method uses a switch statement to handle even and odd numbers based on the 'action' parameter.
-// The 'action' parameter determines which case will be triggered ('even' or 'odd').
-// The 'array' parameter allows us to pass any array of integers to be processed.
-// Once a case is chosen, a for-each loop will iterate through each number in the array.
-// A number is even if it is divisible by 2, and odd if it is not.
+    // This method separates numbers into even or odd based on the provided action.
+    // The 'action' parameter should be either "even" or "odd".
+    // If "even", it prints all even numbers from the given array.
+    // If "odd", it prints all odd numbers from the array.
+    // If the action is invalid, it prints an error message.
     public void oddEven(String action, int[] array) {
-        switch(action.toLowerCase()){
+        switch (action.toLowerCase()) {
             case "even":
                 System.out.print("Even Numbers: ");
                 for (int number : array) {
-                    if (number % 2 == 0){
+                    if (number % 2 == 0) {
                         System.out.print(number + " ");
                     }
                 }
@@ -61,53 +55,44 @@ public class PracPrimeDirective{
             case "odd":
                 System.out.print("Odd Numbers: ");
                 for (int number : array) {
-                    if (number % 2 != 0){
+                    if (number % 2 != 0) {
                         System.out.print(number + " ");
                     }
                 }
                 System.out.println();
                 break;
             default:
-                System.out.println("Invalid Action");
+                System.out.println("Invalid action. Use 'even' or 'odd'.");
         }
     }
 
-
-// This method takes an array 'numbers' and an integer 'n'.
-// It creates a new ArrayList called 'primes'. Even though we have another 'primes' in a different method,
-// each method has its own scope, so they do not interfere with each other.
-// We then loop through each number in 'numbers'.
-// If the number is prime (checked using the 'isPrime' method), it is added to 'primes'.
-// If the size of 'primes' reaches 'n' (i.e., we've found 'n' primes), the loop breaks.
-// Finally, the 'primes' ArrayList is returned.
-    public ArrayList<Integer> firstNPrimes(int[] numbers, int n){
-        ArrayList<Integer> primes = new ArrayList<Integer>();
-        for (int number : numbers){
-            if (isPrime(number)){
+    // This method finds the first 'n' prime numbers from the given array.
+    // It loops through each number in the array, checking if it's prime.
+    // If a prime number is found, it is added to the list.
+    // Once 'n' prime numbers are collected, the loop stops early.
+    // The method then returns the list of found prime numbers.
+    public ArrayList<Integer> firstNPrimes(int[] numbers, int n) {
+        ArrayList<Integer> primes = new ArrayList<>();
+        for (int number : numbers) {
+            if (isPrime(number)) {
                 primes.add(number);
                 if (primes.size() == n) {
-                    break;
+                    break; // Stop once we've found 'n' primes
                 }
             }
         }
         return primes;
     }
 
-    
-// This method generates an array of Fibonacci numbers up to 'n' elements.
-// 'n' determines how many numbers will be generated in the sequence.
-// If 'n' is 0 or negative, the method returns an empty list since no Fibonacci numbers are needed.
-// We define two integers, 'a' and 'b', as the starting values (0 and 1) for the sequence.
-// The first number (0) is always added to the list, and if 'n' is 1, we return the list immediately.
-// If 'n' is greater than 1, the second number (1) is also added before the loop starts.
-// The loop runs from index 2 to 'n - 1' and follows the Fibonacci rule: 
-//      next = a + b (sum of the last two numbers).
-// 'a' is then updated to 'b', and 'b' is updated to 'next' to continue the sequence.
-// This ensures that each new number in the sequence is calculated correctly.
-// Finally, the list of Fibonacci numbers is returned.
-
+    // This method generates a sequence of Fibonacci numbers up to 'n' elements.
+    // The Fibonacci sequence starts with 0 and 1, and each new number is the sum of the previous two.
+    // If 'n' is 0 or negative, we return an empty list.
+    // We initialize two variables, 'a' and 'b', to store the last two Fibonacci numbers.
+    // The first two numbers are added to the list before the loop starts.
+    // The loop continues generating the sequence until 'n' numbers have been added.
+    // The final list of Fibonacci numbers is returned.
     public ArrayList<Integer> firstNFibonacci(int n) {
-        ArrayList<Integer> fibonacciNumbers = new ArrayList<Integer>();
+        ArrayList<Integer> fibonacciNumbers = new ArrayList<>();
         if (n <= 0) {
             return fibonacciNumbers;
         }
@@ -126,20 +111,33 @@ public class PracPrimeDirective{
         return fibonacciNumbers;
     }
 
-    public static void main(String[] args){
-        System.out.println("init test");
+    // The main method serves as an entry point to test the methods.
+    // It initializes test arrays and calls the methods to demonstrate functionality.
+    public static void main(String[] args) {
+        System.out.println("Running Prime and Fibonacci Tests...");
         int[] numbers = {6, 29, 28, 33, 11, 100, 101, 43, 89};
-        int[] newNumbers = {98, 57, 29, 22, 198, 746, 209, 57, 10, 6, 999, 77, 381, 88, 209, 780,};
+        int[] newNumbers = {98, 57, 29, 22, 198, 746, 209, 57, 10, 6, 999, 77, 381, 88, 209, 780};
         PracPrimeDirective pd = new PracPrimeDirective();
-        System.out.println(pd.isPrime(10));
-        System.out.println(pd.isPrime(7));
-        System.out.println(pd.isPrime(1));
-        System.out.println(pd.isPrime(2));
-        System.out.println(pd.onlyPrimes(numbers));
+        
+        // Testing prime number detection
+        System.out.println("Is 10 prime? " + pd.isPrime(10));
+        System.out.println("Is 7 prime? " + pd.isPrime(7));
+        System.out.println("Is 1 prime? " + pd.isPrime(1));
+        System.out.println("Is 2 prime? " + pd.isPrime(2));
+        
+        // Testing filtering prime numbers
+        System.out.println("Prime numbers: " + pd.onlyPrimes(numbers));
+        
+        // Testing even and odd number filtering
         pd.oddEven("even", newNumbers);
         pd.oddEven("odd", newNumbers);
-        System.out.println(pd.firstNPrimes(numbers, 1));
-        System.out.println(pd.firstNPrimes(numbers, 3));
-        System.out.println(pd.firstNFibonacci(20));
+        
+        // Testing finding the first N prime numbers
+        System.out.println("First prime number: " + pd.firstNPrimes(numbers, 1));
+        System.out.println("First 3 prime numbers: " + pd.firstNPrimes(numbers, 3));
+        
+        // Testing Fibonacci sequence generation
+        System.out.println("First 20 Fibonacci numbers: " + pd.firstNFibonacci(20));
     }
 }
+
