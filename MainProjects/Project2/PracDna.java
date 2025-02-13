@@ -5,6 +5,7 @@
 
 public class PracDna {
 
+
     // This method processes an array of DNA sequences and checks if each contains a valid protein.
     // A protein is valid if it starts with "ATG" (start codon) and ends with either "TGA" or "TAA" (stop codon).
     public void proteinTracker(String[] array) {
