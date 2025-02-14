@@ -5,23 +5,35 @@ public class LmnhBank {
 
     public LmnhBank() {
 
-    LmnhCA acc1 = new LmnhCA(5000, "Zeus");
-    LmnhCA acc2 = new LmnhCA(5000, "Hercules");
+        acc2 = new LmnhCA(5000, "Zeus");
+        acc1 = new LmnhCA(2000, "Hercules");
     }
 
     public int acc1GetBalance() {
-        acc1.getBalance();
+        return acc1.getBalance();
+    }
+
+    public void acc1UpdateBalance(int amount) {
+        acc1.updateBalance(amount);
 
     }
 
-    public void acc1updateBalance(int newBalance) {
-        acc1.updateBalance(newBalance);
+    public double acc1InterestRate() {
+        return acc1.getInterest();
     }
 
-    public double acc1intrestRate() {
-        return acc1.showIntrest();
+    public int acc2GetBalance() {
+        return acc2.getBalance();
     }
 
-    public int acc2GetB
+    public void acc2UpdateBalance(int amount) {
+        acc2.updateBalance(amount);
+    }
+
+    public double acc2InterestRate() {
+      return acc2.getInterest();
+    }
+
 
 }
+
