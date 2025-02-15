@@ -10,6 +10,23 @@
 
 public class LmnhStrMeth {
 
-    String baseString = "I am a silly string";
-    String concatMe = ", but only on Saturdays"
+    static String baseString = "I am a silly string";
+    static String concatMe = ", but only on Saturdays.";
+    static String eekWal = "What am I equal too?";
+    static String ranEekWal = "wHAt aM i eqUaL tOo?";
+    static String allCaps = "make me allcaps!";
+    static String lowCase = "MAKE ME LOWER CASE";
+
+
+    public static void main(String[] args) {
+        System.out.println(baseString);
+        System.out.println(baseString.concat(concatMe));
+        System.out.println(eekWal.equals(ranEekWal));
+        System.out.println(eekWal.equalsIgnoreCase(ranEekWal));
+        System.out.println(allCaps.toUpperCase());
+        System.out.println(lowCase.toLowerCase());
+        System.out.println(baseString.indexOf("I"));
+        System.out.println(baseString.charAt(0));
+        System.out.println(baseString.substring(7));
+    }
 }
