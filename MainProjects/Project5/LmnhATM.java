@@ -1,61 +1,60 @@
-
 public class LmnhATM {
-    
-    public static int totATM;
-    public static int totMoney;
+
+    static public int totMoney;
+    static public int totATM;
 
     public int money;
     public String name;
 
-    public LmnhATM(int inputMoney, String inputName) {
 
-        this.money += inputMoney;
-        totMoney += inputMoney;
+    public LmnhATM(int inputCash, String inputName) {
+        this.money += inputCash;
         this.name = inputName;
+        totMoney += inputCash;
         totATM++;
-
     }
 
     public String toString() {
-        return this.name + " has been initalized with $" + this.money + ".";
+        return this.name + " Initialized! The machine has $" + this.money + " available.";
+
     }
 
-    public void withdrawMoney(int withdrawAmount) {
+    public void withdrawCash(int withdrawAmount) {
 
         if (withdrawAmount <= this.money) {
             this.money -= withdrawAmount;
             totMoney -= withdrawAmount;
-            System.out.println("WITHDRAWAL SUCCESSFUL! $" + withdrawAmount + " has been taken from " + this.name + ". There is now $" + this.money + " available.");
+            System.out.println("WITHDRAWAL SUCCESSFUL: You have withdrawn $" + withdrawAmount + " From " + this.name + ". This machine now has $" + this.money + " available." );
         }
         else {
-            System.out.println("WITHDRAWAL FAILED! This machine does not have enough inventory to make the withdrawal.");
+            System.out.println("WITHDRAWAL FAILURE! This machine does not have enough inventory to complete the withdrawal");
         }
-
     }
 
-    public void depositMoney(int depositAmount) {
+    public void depositCash(int depositAmount) {
         this.money += depositAmount;
         totMoney += depositAmount;
-        System.out.println("DEPOSIT SUCCESSFUL! $" + depositAmount + " has been added to " + this.name + ". There is now $" + this.money + " available.");
+        System.out.println("DEPOSIT SUCCESSFUL! $" + depositAmount + " was deposited into " + this.name + ". There is now $" + this.money + " available." );
     }
 
-    public static void statusReport() {
-        System.out.println("GRAND TOTAL: $" + totMoney);
-        System.out.println("AVERAGE: $" + totMoney / totATM);
-        System.out.println("ACTIVE MACHINES: " + totATM);
+    public static void statReport() {
+        System.out.println("GRAND TOTAL $" + totMoney);
+        System.out.println("AVERAGE $" + totMoney / totATM);
+        System.out.println("TOTAL MACHINES: " + totATM);
     }
-
+        
     public static void main(String[] args) {
+
+
         LmnhATM ATM001 = new LmnhATM(5000, "ATM001");
+
         System.out.println(ATM001);
-        ATM001.withdrawMoney(6000);
-        ATM001.withdrawMoney(3000);
-        ATM001.depositMoney(3000);
-        LmnhATM ATM002 = new LmnhATM(5000, "ATM002");
+        ATM001.withdrawCash(6000);
+        ATM001.withdrawCash(1000);
+        ATM001.depositCash(1000);
+        LmnhATM ATM002 = new LmnhATM(10000, "ATM002");
         System.out.println(ATM002);
-        statusReport();
-        LmnhATM ATM003 = new LmnhATM(10000, "ATM003");
-        System.out.println(ATM003);
-        statusReport();
+        statReport();
     }
+
 }

@@ -19,7 +19,7 @@ public class PracATM {
 // Additionally, each time a new instance is created, we increment the static variable `numATMs` 
 // to keep track of the total number of ATM instances.
 public PracATM(int inputMoney, String nameATM) {
-    name = nameATM;
+    this.name = nameATM;
     this.money = inputMoney;
     numATMs += 1;           // Increment the number of ATM instances
     totalMoney += inputMoney; // Add the money from this instance to the total money
