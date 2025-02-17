@@ -29,6 +29,16 @@ class PracNoodle {
         return "Boil noodle for 7 minutes and add sauce.";
     }
 
+
+
+    // This method provides a default string representation for all PracNoodle objects.
+    // It is intended to be overridden by subclasses to provide more specific details 
+    // about each type of noodle while ensuring consistent behavior when printed.
+    public String toString() {
+    return "This is a PracNoodle.";
+}
+
+
     public static void main(String[] args) {
         // Create a new ArrayList to store different noodle types.
         ArrayList<PracNoodle> noodles = new ArrayList<>();
