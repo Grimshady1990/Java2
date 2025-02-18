@@ -1,16 +1,15 @@
 public class LmnhRamen extends LmnhNoodle {
-
     LmnhRamen() {
-        super(1.45, 0.11, "pear", "rusty nails");
+        super(0.32, 1.34, "round", "rusty nails");
     }
 
     @Override
     public String toString() {
-        return "this is a Ramen Noddle and am gunan ramen it where the sun dont shine";
+        return "Ramen Noodle " + lengthInCentimeters + widthInCentimeters + shape + ingredients;
     }
 
     @Override
-    public String getCookPrep() {
-        return "boil the noodles for 75hrs at 1000 degrees C make sure to remove the rust foating at top.";
+    public String getCookingPrep() {
+        return "Ram the ramin where the sun dont shine.";
     }
 }

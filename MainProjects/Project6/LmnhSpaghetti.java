@@ -1,16 +1,19 @@
 public class LmnhSpaghetti extends LmnhNoodle {
 
-    LmnhSpaghetti() {
-        super(25.00, 0.02, "penis", "traqulizers");
+    LmnhSpaghetti(){
+        super(0.50, 1.49, "penis", "sea salt");
     }
 
     @Override
     public String toString() {
-        return "the is a spaggy spaghettiOOHH";
+        return "Spaghetti: " + lengthInCentimeters + widthInCentimeters + shape + ingredients;
     }
 
     @Override
-    public String getCookPrep() {
-        return "Stick the spag in the bol and proceed to have a jolly good time";
+    public String getCookingPrep() {
+        return "cooking Spaggy takes a specail kind of man give up";
     }
+   
+
 }
+

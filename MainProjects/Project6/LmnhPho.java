@@ -1,19 +1,15 @@
 public class LmnhPho extends LmnhNoodle {
-
     LmnhPho() {
-        super(0.28, 1.39, "oval", "curry farts");
+        super(0.02, 2.56, "square", "plastic bags");
     }
 
     @Override
     public String toString() {
-        return "This is a Pho NOODLE BIATCH!!!"; 
-
+        return "Pho noodles: " + lengthInCentimeters + widthInCentimeters + shape + ingredients;
     }
     
     @Override
-    public String getCookPrep() {
-
-        return "Stick the PHO NOODLES in the tumble dryer and breath in deep to get them good curry farts";
+    public String getCookingPrep() {
+        return "Boil noodles for 25 years and dont forget to shave";
     }
-
 }

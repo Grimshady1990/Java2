@@ -1,16 +1,17 @@
-public class LmnhUdon extends LmnhNoodle {
-
+class LmnhUdon extends LmnhNoodle {
     LmnhUdon() {
-        super(0.23, 1.34, "triangle", "toadstool");
+        super(2.56, 0.34, "spiral", "bleach");
     }
 
     @Override
-    public String toString() {
-        return "This is a UDON DO ONE FELLA!";
+    public String toString(){
+        return "Udon:: " + lengthInCentimeters + widthInCentimeters + shape + ingredients;
     }
 
     @Override
-    public String getCookPrep() {
-        return "Steam for 2hrs after inhaling the steam jump on the yellow submarine";
+    public String getCookingPrep(){
+        return "stick the udon in the pan and do one";
     }
+
+
 }
