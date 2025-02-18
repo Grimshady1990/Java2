@@ -1,15 +1,17 @@
 public class LmnhRamen extends LmnhNoodle {
+
     LmnhRamen() {
-        super(0.32, 1.34, "round", "rusty nails");
+        super(1.48, 9.34, "perculiar", "recycled toilet paper");
     }
 
     @Override
     public String toString() {
-        return "Ramen Noodle " + lengthInCentimeters + widthInCentimeters + shape + ingredients;
+        return "Were Ramen!! at " + lengthInCm + "cm in length and " + widthInCm + " I hope yeah like a ramen too! with it's " + shape + " shape and a aroma of " + ingredient;
     }
 
     @Override
-    public String getCookingPrep() {
-        return "Ram the ramin where the sun dont shine.";
+    public String getCookPrep() {
+        return "Place ramen in a steeldrum and keep jammen until its cooked";
     }
+
 }
