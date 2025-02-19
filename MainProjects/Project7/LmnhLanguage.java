@@ -17,7 +17,50 @@ public class LmnhLanguage {
         
     }
 
-    public void loopLang() {
+    public static void loopLang() {
+        LmnhLanguage[] languages = {
+        new LmnhMayan("Chondal", 32432423),
+        new LmnhSinoTibetan("Chinese Mandarin", 9999999),
+        new LmnhSinoTibetan("Burmese", 34783743),
+        new LmnhIoM("Manx", 1000)
 
+    };
+        for (LmnhLanguage lang : languages) {
+            lang.getInfo();
+        }
+    }
+
+    public void setRegion(String reg) {
+        this.regionsSpoken = reg;
+    }
+
+    public void setSpeakers(int spek) {
+        this.numSpeakers = spek;
+    }
+
+    public void setWdOrder(String order) {
+        this.wordOrder = order;
+    }
+
+    
+    public static void main(String[] args) {
+        LmnhIoM manx = new LmnhIoM("Manx", 1000); 
+        manx.getInfo(); 
+
+        LmnhMayan chondal = new LmnhMayan("Chondal", 999999);
+        chondal.getInfo();
+
+        LmnhSinoTibetan mandarin = new LmnhSinoTibetan("Chinese Mandarin", 10000000);
+        mandarin.getInfo();
+
+        LmnhSinoTibetan burmese = new LmnhSinoTibetan("Burmese", 487384);
+        burmese.getInfo();
+
+        loopLang();
+
+        manx.setRegion("Isle of Man");
+        manx.setSpeakers(999999999);
+        manx.setWdOrder("@@@@@@@");
+        manx.getInfo();
     }
 }
