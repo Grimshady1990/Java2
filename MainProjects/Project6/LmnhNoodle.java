@@ -1,57 +1,63 @@
 import java.util.ArrayList;
 
-import javax.swing.SortOrder;
-
 class LmnhNoodle {
-    protected double lengthInCentimeters;
-    protected double widthInCentimeters;
-    protected String shape;
-    protected String ingredients;
 
-    LmnhNoodle(double lenInCen, double widInCen, String shp, String ingr) {
-        this.lengthInCentimeters = lenInCen;
-        this.widthInCentimeters = widInCen;
+    protected double lengthInCm;
+    protected double widthInCm;
+    protected String shape;
+    protected String ingredient;
+
+    LmnhNoodle(double lenCen, double widCen, String shp, String ingr) {
+
+        this.lengthInCm = lenCen;
+        this.widthInCm = widCen;
         this.shape = shp;
-        this.ingredients = ingr;
+        this.ingredient = ingr;
+
     }
 
     public String toString() {
-        return "Does matter this will be overriden";
+        return "This will be overriden";
     }
 
-    public String getCookingPrep() {
-        return "will also be overriden";
+    public String getCookPrep() {
+        return "This will be overriden";
     }
-    public  String getNoodleInfo(String nameNoodle) {
-        return "This is a " + nameNoodle + " and is made of " + ingredients + ".";
+
+    public String getInfo(String noodleName) {
+        return "this is a " + noodleName + " noodle and is made from " + ingredient;
     }
 
     public static void main(String[] args) {
         ArrayList<LmnhNoodle> noodles = new ArrayList<>();
-        noodles.add(new LmnhUdon());
         noodles.add(new LmnhPho());
-        noodles.add(new LmnhRamen());
         noodles.add(new LmnhSpaghetti());
-
-
+        noodles.add(new LmnhRamen());
+        noodles.add(new LmnhUdon());
         for (LmnhNoodle noodle : noodles) {
-            System.out.println(noodle.getCookingPrep());
-
+            System.out.println(noodle.getCookPrep());
         }
 
-        LmnhRamen ramen = new LmnhRamen();
-        LmnhSpaghetti spag = new LmnhSpaghetti();
-        LmnhUdon udon = new LmnhUdon();
         LmnhPho pho = new LmnhPho();
-        System.out.println(udon);
-        System.out.println(spag);
         System.out.println(pho);
+        LmnhUdon udon = new LmnhUdon();
+        System.out.println(udon);
+        LmnhRamen ramen = new LmnhRamen();
         System.out.println(ramen);
+        LmnhSpaghetti spag = new LmnhSpaghetti();
+        System.out.println(spag);
+        
+        System.out.println(spag.getInfo("Spagghettioooos"));
+        System.out.println(pho.getInfo("phew"));
+        System.out.println(ramen.getInfo("ramen jammen"));
+        System.out.println(udon.getInfo("udon on one"));
 
-        System.out.println(spag.getNoodleInfo("spaggy"));
-        System.out.println(udon.getNoodleInfo("udon"));
-        System.out.println(ramen.getNoodleInfo("ramen"));
-        System.out.println(pho.getNoodleInfo("pho"));
+
+        
         
     }
+
+
+
+
 }
