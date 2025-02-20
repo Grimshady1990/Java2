@@ -8,7 +8,7 @@ This is a beginner learning project and not a real cryptocurrency program.
 ## Prime Directive P1  
 
 I will use a method similar to `firstNFibonacci`, but instead of Fibonacci calculations,  
-it will add 10 to the index to create the next index, and so on.  
+it will add 10% to the index to create the next index, and so on.  
 
 This will generate future projections, showing a **10% increase in profits each month**.  
 
