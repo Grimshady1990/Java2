@@ -6,15 +6,17 @@ public class Login {
         this.userAccounts = userAccounts;
     }
 
-    public void authenticate(String username, String pin) {
+    public boolean authenticate(String username, String pin) {
         if (userAccounts.getUsers().containsKey(username)) {
             if (userAccounts.getUsers().get(username).equals(pin)) {
                 System.out.println("Login successful! Welcome, " + username + "!");
+                return true;
             } else {
                 System.out.println("Incorrect PIN. Try again.");
             }
         } else {
             System.out.println("Username not found. Please register first.");
         }
+        return false;
     }
 }

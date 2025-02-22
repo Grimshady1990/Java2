@@ -38,7 +38,11 @@ public class Main {
                     String loginPin = scanner.nextLine();
 
                     Login login = new Login(userAccounts);
-                    login.authenticate(loginUsername, loginPin);
+                    boolean loggedIn = login.authenticate(loginUsername, loginPin);
+
+                    if (loggedIn) {
+                        showUserMenu(scanner);
+                    }
                     break;
 
                 case "3":
@@ -58,5 +62,43 @@ public class Main {
 
             }
     }
+    }
+
+    private static void showUserMenu(Scanner scanner) {
+        while (true) {
+            System.out.println("\n==== USER MENU ====");
+            System.out.println("[1] Wallet");
+            System.out.println("[2] Swap");
+            System.out.println("[3] Projections");
+            System.out.println("[4] Deposit");
+            System.out.println("[5] Logout");
+
+            String choice = scanner.nextLine();
+
+            switch (choice) {
+                case "1":
+                    System.out.println("Wallet feature coming soon...");
+                    break;
+
+                case "2":
+                    System.out.println("Swap feature coming soon...");
+                    break;
+
+                case "3":
+                    System.out.println("Projections feature coming soon...");
+                    break;
+
+                case "4":
+                    System.out.println("Deposit feature coming soon...");
+                    break;
+
+                case "5": 
+                    System.out.println("Logging out...");
+                    return;
+
+                default:
+                    System.out.println("Invalid option. Please choose 1, 2, 3, 4, or 5.");
+            }
+        }
     }
 }
