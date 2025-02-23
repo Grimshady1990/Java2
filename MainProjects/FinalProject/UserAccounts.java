@@ -6,6 +6,7 @@ import java.util.HashMap;
 public class UserAccounts {
 
     private HashMap<String, String> users = new HashMap<>();
+    public HashMap<String, UserWallet> wallets = new HashMap<>();
     private final String FILE_NAME = "ZZUsers.txt";
 
     public UserAccounts() {
@@ -19,6 +20,8 @@ public class UserAccounts {
         }
 
         users.put(username,pin);
+        UserWallet newWallet = new UserWallet();
+        wallets.put(username, newWallet);
         System.out.println("User registered: " + username);
         saveAccounts();
     }
@@ -27,12 +30,29 @@ public class UserAccounts {
         return users;
     }
 
-    private void saveAccounts() {
+    public HashMap<String, UserWallet> getWallets() {
+        return wallets;
+    }
+
+
+        public void saveAccounts() {
         try (PrintWriter writer = new PrintWriter(new FileWriter(FILE_NAME))) {
             for (String username : users.keySet()) {
-                writer.println(username + "," + users.get(username));
+                String userPin = users.get(username);
+                UserWallet userWallet = wallets.get(username);
+                if (userWallet != null) {
+                    // Serialize the wallet data as a string
+                    String walletData = userWallet.getWalletAsString();
+
+                    // Save username, pin, and wallet data to the file
+                    writer.println(username + "," + userPin + "," + walletData); // Save in CSV format
+                    System.out.println("Saving account: " + username + " with wallet: " + walletData); // Debugging print statement
+
             }
-        } catch (IOException e) {
+        } 
+
+        }
+        catch (IOException e) {
             System.out.println("Error saving accounts");
         }
     }
@@ -45,12 +65,30 @@ public class UserAccounts {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
-                if (parts.length == 2) {
-                    users.put(parts[0], parts[1]);
-                }
+                if (parts.length >= 3) {
+                    String username = parts[0].trim();
+                    String pin = parts[1].trim();
+                    String walletData = parts[2].trim();
+                    System.out.println("Username: " + username);
+                    System.out.println("PIN: " + pin);
+                    System.out.println("Wallet Data: " + walletData);
+
+                    users.put(username, pin);
+
+                    UserWallet wallet = wallets.get(username);
+                    if (wallet == null) {
+                        wallet = new UserWallet();
+                        wallets.put(username, wallet);
+
+                    }
+                    wallet.loadWalletFromString(walletData);
+                }    
+                
             }
         } catch (IOException e) {
             System.out.println("Error loading accounts.");
-        }
+        
+          }
+
     }
 }

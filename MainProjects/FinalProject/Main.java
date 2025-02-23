@@ -42,7 +42,7 @@ public class Main {
                     boolean loggedIn = login.authenticate(loginUsername, loginPin);
 
                     if (loggedIn) {
-                        showUserMenu(scanner, userWallet, userAccounts, loginUsername);
+                        showUserMenu(scanner, userAccounts, loginUsername);
                     }
                     break;
 
@@ -65,51 +65,55 @@ public class Main {
     }
     }
 
-    private static void showUserMenu(Scanner scanner, UserWallet userWallet, UserAccounts userAccounts, String username) {
-        while (true) {
-            System.out.println("\n==== USER MENU ====");
-            System.out.println("[1] Wallet");
-            System.out.println("[2] Swap");
-            System.out.println("[3] Projections");
-            System.out.println("[4] Deposit");
-            System.out.println("[5] Logout");
+   private static void showUserMenu(Scanner scanner, UserAccounts userAccounts, String username) {
+        UserWallet userWallet = userAccounts.getWallets().get(username);
+    while (true) {
+        System.out.println("\n==== USER MENU ====");
+        System.out.println("[1] Wallet");
+        System.out.println("[2] Swap");
+        System.out.println("[3] Projections");
+        System.out.println("[4] Deposit");
+        System.out.println("[5] Logout");
 
-            String choice = scanner.nextLine();
+        String choice = scanner.nextLine();
 
-            switch (choice) {
-                case "1":
+        switch (choice) {
+            case "1":
+                  // Get the correct user's wallet
+                if (userWallet != null) {
                     userWallet.displayWallet();
-                    break;
+                } else {
+                    System.out.println("No wallet found for user: " + username);
+                }
+                break;
 
-                case "2":
-                    System.out.println("Swap feature coming soon...");
-                    break;
+            case "2":
+                System.out.println("Swap feature coming soon...");
+                break;
 
-                case "3":
-                    System.out.println("Projections feature coming soon...");
-                    break;
+            case "3":
+                System.out.println("Projections feature coming soon...");
+                break;
 
-                case "4":
-                    System.out.print("Enter currency: ");
-                    String currency = scanner.nextLine();  // Get the currency from user input
+            case "4":
+                System.out.print("Enter currency: ");
+                String currency = scanner.nextLine();
 
-                    System.out.print("Enter amount in USD: ");
-                    double amountInUSD = Double.parseDouble(scanner.nextLine());  // Get the amount in USD
+                System.out.print("Enter amount in USD: ");
+                double amountInUSD = Double.parseDouble(scanner.nextLine());
 
-    // Now call the deposit method on userWallet with the correct arguments
-                    userWallet.deposit(currency, amountInUSD);  // Pass currency and amountInUSD
-                    break;
+                userWallet.deposit(currency, amountInUSD, username, userAccounts);  // Make sure deposit works correctly
+                userAccounts.saveAccounts();  // Save the account data after the deposit
+                break;
 
+            case "5": 
+                System.out.println("Logging out...");
+                return;
 
-
-                case "5": 
-                    System.out.println("Logging out...");
-                    return;
-
-                default:
-                    System.out.println("Invalid option. Please choose 1, 2, 3, 4, or 5.");
-            }
+            default:
+                System.out.println("Invalid option. Please choose 1, 2, 3, 4, or 5.");
         }
     }
+}
 
 }

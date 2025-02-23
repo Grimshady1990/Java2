@@ -1,2 +1,2 @@
-yuki,1234
-Grimshady,0000
+Grimble,0000,BTC=0.0;XRP=390.0;USDT=0.0;
+fizwop,000,BTC=1.0;XRP=0.0;USDT=1000.0;
