@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
+        UserWallet userWallet = new UserWallet();
         Scanner scanner = new Scanner(System.in);
         UserAccounts userAccounts = new UserAccounts();
 
@@ -41,7 +42,7 @@ public class Main {
                     boolean loggedIn = login.authenticate(loginUsername, loginPin);
 
                     if (loggedIn) {
-                        showUserMenu(scanner);
+                        showUserMenu(scanner, userWallet, userAccounts, loginUsername);
                     }
                     break;
 
@@ -64,7 +65,7 @@ public class Main {
     }
     }
 
-    private static void showUserMenu(Scanner scanner) {
+    private static void showUserMenu(Scanner scanner, UserWallet userWallet, UserAccounts userAccounts, String username) {
         while (true) {
             System.out.println("\n==== USER MENU ====");
             System.out.println("[1] Wallet");
@@ -77,7 +78,7 @@ public class Main {
 
             switch (choice) {
                 case "1":
-                    System.out.println("Wallet feature coming soon...");
+                    userWallet.displayWallet();
                     break;
 
                 case "2":
@@ -89,8 +90,17 @@ public class Main {
                     break;
 
                 case "4":
-                    System.out.println("Deposit feature coming soon...");
+                    System.out.print("Enter currency: ");
+                    String currency = scanner.nextLine();  // Get the currency from user input
+
+                    System.out.print("Enter amount in USD: ");
+                    double amountInUSD = Double.parseDouble(scanner.nextLine());  // Get the amount in USD
+
+    // Now call the deposit method on userWallet with the correct arguments
+                    userWallet.deposit(currency, amountInUSD);  // Pass currency and amountInUSD
                     break;
+
+
 
                 case "5": 
                     System.out.println("Logging out...");
@@ -101,4 +111,5 @@ public class Main {
             }
         }
     }
+
 }
