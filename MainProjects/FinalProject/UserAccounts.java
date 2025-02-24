@@ -49,7 +49,7 @@ public class UserAccounts {
 
                     // Save username, pin, and wallet data to the file
                     writer.println(username + "," + encryptedPin + "," + walletData); // Save in CSV format
-                    System.out.println("Saving account: " + username + " with wallet: " + walletData + " with encryptedPin:" + encryptedPin); // Debugging print statement
+                 //   System.out.println("Saving account: " + username + " with wallet: " + walletData + " with encryptedPin:" + encryptedPin); // Debugging print statement
 
             }
         } 
@@ -72,9 +72,9 @@ public class UserAccounts {
                     String username = parts[0].trim();
                     String encryptedPin = parts[1].trim();
                     String walletData = parts[2].trim();
-                    System.out.println("Username: " + username);
-                    System.out.println("PIN: " + encryptedPin);
-                    System.out.println("Wallet Data: " + walletData);
+                 //   System.out.println("Username: " + username);
+                //    System.out.println("PIN: " + encryptedPin);
+               //     System.out.println("Wallet Data: " + walletData);
 
                     String decodePin = new String(Base64.getDecoder().decode(encryptedPin));
 

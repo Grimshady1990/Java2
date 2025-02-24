@@ -31,44 +31,20 @@ I will use the Bank program to **create new user accounts** that will manage:
 - User information  
 - Deposits  
 - Withdrawals  
-- Transfers  
+- Swaps  
 
 ---
 
 ## StringMeth P4  
 
 I will use the `equals` method to **determine if a username exists**.  
-
----
-
-## ATM P5  
-
-I will use the ATM program to **manage the company's store assets**.  
-
----
-
-## Noodle P6  
-
-I will use the Noodle program to **build profiles for different cryptocurrencies**,  
-providing users with **detailed information**.  
-
----
+ 
 
 ## Languages P7  
 
 This program works similarly to **P6**, but it will store information about  
 more nuanced cryptocurrency features such as:  
-- **NFTs**  
-- **Layer 2 solutions**  
-- **Web3**  
+- **NFTs**
 
 ---
 
-## Other Functionality  
-
-### Crypto Transfers  
-
-I need a function that can **swap cryptocurrencies**.  
-
-The conversions will be **fixed** using **simple math equations**  
-to adjust the amount during transfer, as **1 XRP ≠ 1 BTC**.

@@ -42,7 +42,7 @@ public class UserWallet {
             double convertedAmount = amountInUSD * conversionRates.get(currency);
             balances.put(currency, balances.get(currency) + convertedAmount);
             System.out.printf("Deposited $%.2f, converted to %.6f %s%n", amountInUSD, convertedAmount, currency);
-            System.out.println("🔄 Updated Wallet Balances: " + balances);
+         //   System.out.println("🔄 Updated Wallet Balances: " + balances);
 
             // 🔎 Ensure we get the correct wallet for the user
         UserWallet userWallet = userAccounts.wallets.get(username);
@@ -90,7 +90,7 @@ public class UserWallet {
         }
 
     public void loadWalletFromString(String walletData) {
-    System.out.println("Loading wallet data: " + walletData); // Debug print
+   // System.out.println("Loading wallet data: " + walletData); // Debug print
     String[] currencyData = walletData.split(";");
     for (String data : currencyData) {
         if (data.length() > 0) {
@@ -106,17 +106,17 @@ public class UserWallet {
                     continue;
                 }
                 balances.put(currency, balance);
-                System.out.println("✅ Loaded: " + currency + " = " + balance);  // Debug print
+              //  System.out.println("✅ Loaded: " + currency + " = " + balance);  // Debug print
             }
         }
     }
-    System.out.println("Balances after loading wallet: " + balances);  // Debug print
+   // System.out.println("Balances after loading wallet: " + balances);  // Debug print
 }
 
 
     public void displayWallet() {
         
-        System.out.println("Balances map: " + balances);
+       // System.out.println("Balances map: " + balances);
 
         if (balances.isEmpty()) {
             System.out.println("No wallet data available.");

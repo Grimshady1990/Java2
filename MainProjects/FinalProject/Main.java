@@ -74,7 +74,8 @@ public class Main {
         System.out.println("[3] Projections");
         System.out.println("[4] Deposit");
         System.out.println("[5] Withdraw");
-        System.out.println("[6] Logout");
+        System.out.println("[6] NFT Collection");
+        System.out.println("[7] Logout");
 
         String choice = scanner.nextLine();
 
@@ -150,13 +151,18 @@ public class Main {
                 }
                 break;
 
+                case "6":
+                    NFTCollection nftCollection = new NFTCollection();
+                    nftCollection.showNFTMenu(scanner);
+                    break;
 
-                        case "6": 
-                System.out.println("Logging out...");
-                return;
 
-            default:
-                System.out.println("Invalid option. Please choose 1, 2, 3, 4, or 5.");
+                case "7": 
+                    System.out.println("Logging out...");
+                    return;
+
+                default:
+                    System.out.println("Invalid option. Please choose 1, 2, 3, 4, or 5.");
         }
     }
 }
