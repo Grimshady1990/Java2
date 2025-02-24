@@ -73,7 +73,8 @@ public class Main {
         System.out.println("[2] Swap");
         System.out.println("[3] Projections");
         System.out.println("[4] Deposit");
-        System.out.println("[5] Logout");
+        System.out.println("[5] Withdraw");
+        System.out.println("[6] Logout");
 
         String choice = scanner.nextLine();
 
@@ -130,7 +131,27 @@ public class Main {
                 userAccounts.saveAccounts();
                 break;
 
-            case "5": 
+                case "5":
+                if (userWallet != null) {
+                    System.out.print("Enter the currency you want to withdraw from (USDT, BTC, XRP): ");
+                    String fromCurrencyWithdraw = scanner.nextLine();
+
+                    System.out.print("Enter the amount in USD to withdraw: ");
+                    double amountInUSDWithdraw = Double.parseDouble(scanner.nextLine());
+
+                    Withdraw withdraw = new Withdraw(userWallet);
+                    // Fix: Pass the correct variable names to the withdraw method
+                    withdraw.withdrawCurrency(fromCurrencyWithdraw, amountInUSDWithdraw, username, userAccounts);
+
+                    // Save the updated accounts after withdrawal
+                    userAccounts.saveAccounts();
+                } else {
+                    System.out.println("No wallet found for user: " + username);
+                }
+                break;
+
+
+                        case "6": 
                 System.out.println("Logging out...");
                 return;
 

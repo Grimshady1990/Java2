@@ -1,5 +1,6 @@
 import java.io.*;
 
+import java.util.Base64;
 
 import java.util.HashMap;
 
@@ -36,17 +37,19 @@ public class UserAccounts {
 
 
         public void saveAccounts() {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(FILE_NAME, true))) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(FILE_NAME))) {
             for (String username : users.keySet()) {
                 String userPin = users.get(username);
                 UserWallet userWallet = wallets.get(username);
                 if (userWallet != null) {
+
+                    String encryptedPin = Base64.getEncoder().encodeToString(userPin.getBytes());
                     // Serialize the wallet data as a string
                     String walletData = userWallet.getWalletAsString();
 
                     // Save username, pin, and wallet data to the file
-                    writer.println(username + "," + userPin + "," + walletData); // Save in CSV format
-                    System.out.println("Saving account: " + username + " with wallet: " + walletData); // Debugging print statement
+                    writer.println(username + "," + encryptedPin + "," + walletData); // Save in CSV format
+                    System.out.println("Saving account: " + username + " with wallet: " + walletData + " with encryptedPin:" + encryptedPin); // Debugging print statement
 
             }
         } 
@@ -67,13 +70,15 @@ public class UserAccounts {
                 String[] parts = line.split(",");
                 if (parts.length >= 3) {
                     String username = parts[0].trim();
-                    String pin = parts[1].trim();
+                    String encryptedPin = parts[1].trim();
                     String walletData = parts[2].trim();
                     System.out.println("Username: " + username);
-                    System.out.println("PIN: " + pin);
+                    System.out.println("PIN: " + encryptedPin);
                     System.out.println("Wallet Data: " + walletData);
 
-                    users.put(username, pin);
+                    String decodePin = new String(Base64.getDecoder().decode(encryptedPin));
+
+                    users.put(username, decodePin);
 
                     UserWallet wallet = wallets.get(username);
                     if (wallet == null) {
