@@ -22,6 +22,21 @@ public class UserWallet {
 
     }
 
+
+    public double getTotalBalanceInUSD() {
+        double totalUSD = 0.0;
+        for (String currency : balances.keySet()) {
+            double cryptoAmount = balances.get(currency);
+            double usdValue = cryptoAmount / conversionRates.get(currency);
+            totalUSD += usdValue;
+        }
+        return totalUSD;
+    }
+
+    public Map<String, Double> getConversionRates() {
+        return conversionRates;
+    }
+
     public void deposit(String currency, double amountInUSD, String username, UserAccounts userAccounts) {
         if (balances.containsKey(currency)) {
             double convertedAmount = amountInUSD * conversionRates.get(currency);
@@ -52,6 +67,11 @@ public class UserWallet {
     public double getBalance(String currency) {
         return balances.getOrDefault(currency, 0.0);
 
+    }
+
+    public void updateBalance(String currency, double amount) {
+        double currentBalance = balances.getOrDefault(currency, 0.0);
+        balances.put(currency, currentBalance + amount);
     }
 
     public Map<String, Double> getBalances() {

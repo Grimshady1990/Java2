@@ -36,7 +36,7 @@ public class UserAccounts {
 
 
         public void saveAccounts() {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(FILE_NAME))) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(FILE_NAME, true))) {
             for (String username : users.keySet()) {
                 String userPin = users.get(username);
                 UserWallet userWallet = wallets.get(username);

@@ -79,7 +79,7 @@ public class Main {
 
         switch (choice) {
             case "1":
-                  // Get the correct user's wallet
+                  
                 if (userWallet != null) {
                     userWallet.displayWallet();
                 } else {
@@ -88,11 +88,35 @@ public class Main {
                 break;
 
             case "2":
-                System.out.println("Swap feature coming soon...");
+                if (userWallet != null) {
+                    System.out.print("Enter the currency you want to swap from: ");
+                    String fromCurrency = scanner.nextLine();
+
+                    System.out.print("Enter the currency you want to swap to: ");
+                    String toCurrency = scanner.nextLine();
+
+                    System.out.print("Enter the amount in USD to swap: ");
+                    double amountInUSD = Double.parseDouble(scanner.nextLine());
+
+                    Swap swap = new Swap(userWallet, userAccounts);
+                    swap.swapCurrency(fromCurrency, toCurrency, amountInUSD);
+
+                } else {
+                    System.out.println("No Wallet found for user: " + username);
+                }
                 break;
 
             case "3":
-                System.out.println("Projections feature coming soon...");
+                if (userWallet != null) {
+                    System.out.print("Enter the number of months for projection: ");
+                    int months = Integer.parseInt(scanner.nextLine());
+
+                    Projections projections = new Projections(userWallet); 
+                    projections.calculateProjections(months);
+                } else {
+                    System.out.println("No wallet found for user: " + username);
+                }
+
                 break;
 
             case "4":
@@ -102,8 +126,8 @@ public class Main {
                 System.out.print("Enter amount in USD: ");
                 double amountInUSD = Double.parseDouble(scanner.nextLine());
 
-                userWallet.deposit(currency, amountInUSD, username, userAccounts);  // Make sure deposit works correctly
-                userAccounts.saveAccounts();  // Save the account data after the deposit
+                userWallet.deposit(currency, amountInUSD, username, userAccounts);
+                userAccounts.saveAccounts();
                 break;
 
             case "5": 
