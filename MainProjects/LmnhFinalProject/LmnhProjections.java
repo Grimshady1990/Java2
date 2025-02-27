@@ -1,10 +1,10 @@
-import javax.swing.DropMode;
+
 
 public class LmnhProjections {
 
     private LmnhUserWallet userWallet;
 
-    public LmnhProjections(UserWallet userWallet) {
+    public LmnhProjections(LmnhUserWallet userWallet) {
         this.userWallet = userWallet;
     }
 

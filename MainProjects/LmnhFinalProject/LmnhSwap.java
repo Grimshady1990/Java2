@@ -24,14 +24,17 @@ public class LmnhSwap {
         if (!conversionRates.containsKey(fromCurrency) || !conversionRates.containsKey(toCurrency)) {
             System.out.println("Invalid currency selection.");
             return;
-
         }
+
+        double fromBalance = userWallet.getBalance(fromCurrency);
+
+        double amountToDeduct = amountInUSD * conversionRates.get(fromCurrency);
 
         double amountToAdd = amountInUSD * conversionRates.get(toCurrency);
 
         userWallet.updateBalance(fromCurrency, -amountToDeduct);
         
-        userWallet,updateBalance(toCurrency, amountToAdd);
+        userWallet.updateBalance(toCurrency, amountToAdd);
 
         System.out.printf("Successfully swapped %.2f %s to %.6f %s%n", amountToDeduct, fromCurrency, amountToAdd, toCurrency);
 

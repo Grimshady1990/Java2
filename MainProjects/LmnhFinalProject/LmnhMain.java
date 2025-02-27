@@ -5,7 +5,8 @@ public class LmnhMain {
 
         Scanner scanner = new Scanner(System.in);
 
-        LmnhUserAccounts lmnhUserAccounts = new LmnhUserAccounts();
+        LmnhUserAccounts userAccounts = new LmnhUserAccounts();
+
 
 
         while (true) {
@@ -111,11 +112,10 @@ public class LmnhMain {
 
                 case "3":
                     if (userWallet != null) {
-                        System.out.print("Enter the number of months for projections: ");
-                        
+                        System.out.print("Enter the number of months for Projection: ");
                         int months = Integer.parseInt(scanner.nextLine());
 
-                        Projections projections = new Projecttions(UserWallet);
+                        LmnhProjections projections = new LmnhProjections(userWallet);
                         projections.calculateProjections(months);
                     } else {
                         System.out.println("No wallet found for user: " + username);
@@ -145,7 +145,7 @@ public class LmnhMain {
                         System.out.print("Enter the amount in USD to withdraw: ");
                         double amountInUSDWithdraw = Double.parseDouble(scanner.nextLine());
 
-                        Withdraw withdraw = new Withdraw(userWallet);
+                        LmnhWithdraw withdraw = new LmnhWithdraw(userWallet);
                         withdraw.withdrawCurrency(fromCurrencyWithdraw, amountInUSDWithdraw, username, userAccounts);
 
                         userAccounts.saveAccounts();
@@ -161,3 +161,9 @@ public class LmnhMain {
 
 
 }
+                    
+            
+        
+    
+
+

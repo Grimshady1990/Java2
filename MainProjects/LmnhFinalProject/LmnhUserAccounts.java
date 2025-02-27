@@ -54,7 +54,7 @@ public class LmnhUserAccounts {
 
                     String walletData = userWallet.getWalletAsString();
 
-                    writer.println(username + "," + encryptedPin + "," + waleltData);
+                    writer.println(username + "," + encryptionPin + "," + walletData);
                 }
             }
         } catch (IOException e) {

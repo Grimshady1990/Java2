@@ -1,0 +1,1 @@
+fizwop,MDAwMA==,BTC=0.01;XRP=0.0;USDT=0.0;

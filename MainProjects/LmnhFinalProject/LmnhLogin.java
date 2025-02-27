@@ -1,14 +1,14 @@
 public class LmnhLogin {
 
-    private LmnhUserAccounts lmnhUserAccounts;
+    private LmnhUserAccounts userAccounts;
 
-    public LmnhLogin(LmnhUserAccounts lmnhUserAccounts) {
-        this.lmnhUserAccounts = lmnhUserAccounts;
+    public LmnhLogin(LmnhUserAccounts userAccounts) {
+        this.userAccounts = userAccounts;
     }
 
     public boolean authenticate(String username, String pin) {
-        if (lmnhuserAccounts.getUsers().containsKey(username)) {
-            if (lmnhUserAccounts.getUsers().get(username).equals(pin)) {
+        if (userAccounts.getUsers().containsKey(username)) {
+            if (userAccounts.getUsers().get(username).equals(pin)) {
                 System.out.println("Login successful! Welcome, " + username + "!");
                 return true;
             } else {
