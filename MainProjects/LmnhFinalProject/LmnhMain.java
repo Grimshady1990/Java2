@@ -111,8 +111,50 @@ public class LmnhMain {
 
                 case "3":
                     if (userWallet != null) {
-                        System.out.print("Enter");
+                        System.out.print("Enter the number of months for projections: ");
+                        
+                        int months = Integer.parseInt(scanner.nextLine());
+
+                        Projections projections = new Projecttions(UserWallet);
+                        projections.calculateProjections(months);
+                    } else {
+                        System.out.println("No wallet found for user: " + username);
                     }
+
+                    break;
+
+                case "4":
+
+                    System.out.println("Enter currency");
+                    String currency = scanner.nextLine();
+
+                    System.out.print("Enter amount in USD: ");
+                    double amountInUSD = Double.parseDouble(scanner.nextLine());
+
+                    userWallet.deposit(currency, amountInUSD, username, userAccounts);
+                    userAccounts.saveAccounts();
+                    break;
+
+                case "5":
+
+                    if (userWallet != null) {
+
+                        System.out.print("Enter the currency you want to withdraw from (USDT, BTC, XRP): ");
+                        String fromCurrencyWithdraw = scanner.nextLine();
+
+                        System.out.print("Enter the amount in USD to withdraw: ");
+                        double amountInUSDWithdraw = Double.parseDouble(scanner.nextLine());
+
+                        Withdraw withdraw = new Withdraw(userWallet);
+                        withdraw.withdrawCurrency(fromCurrencyWithdraw, amountInUSDWithdraw, username, userAccounts);
+
+                        userAccounts.saveAccounts();
+
+                    } else {
+                        System.out.println("No wallet found for user: " + username);
+                    }
+                    break;
+                    
             }
         }
     }
